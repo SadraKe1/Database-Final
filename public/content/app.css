@@ -1,0 +1,245 @@
+/*Imported Custom Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Playfair+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap');
+body {
+  background-color: #0b075a  !important;
+  font-family: 'Bebas Neue', serif;
+}
+
+/*Button on navbar*/
+#navbarSupportedContent {
+  color:#FFCC00; 
+}
+
+/*_____________________HOME PAGE*___________________/
+/*Container for home page*/
+.homeContainer { 
+  flex-direction: column;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px !important;
+  animation: fadeIn 1.5s 1;
+}
+
+/*title styling*/
+.homeTitle{
+  font-family: 'Bebas Neue', serif;
+  font-size: 110px !important;
+  text-align: center !important;
+  margin-top: 10% !important;
+  /*padding: auto !important;*/
+  animation: fadeIn 1.5s 1;
+  color: #FFCC00;
+}
+
+/*Start button*/
+#start-button {
+  color: #0b075a !important;
+  text-align: center !important;
+  border:1px solid #0b075a !important;
+}
+#start-button:hover{
+  color: white !important;
+}
+
+/*animation for when page loads*/
+img { 
+  animation: fadeIn-Img 1s 1 !important;
+}
+@keyframes fadeIn {
+  100% {margin-top:0%; opacity:1.0}
+  0% {margin-top:1.6%; opacity: 0.0}
+}
+@keyframes fadeIn-Img {
+  100% {margin-top:0%; opacity:1.0}
+  0% {margin-top:50%; opacity: 0.0}
+}
+@keyframes opacityFade {
+  0% {opacity: 0;}
+  25% {opacity: 0;}
+  100% {opacity: 1;}
+}
+/*_____________________________________________________________*/
+
+
+
+/*_________________________Login Page_______________________________*/
+/*Formatting for login form*/
+.loginPage{
+  flex-direction: column !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 500px !important;
+  margin: auto !important;
+  margin-top: 10% !important;
+  /* transform: translateY(-50%) !important; */
+}
+.loginPage .formBox{
+  width: 100% !important;
+}
+.loginPage .form-group{
+  gap: 40px !important;
+}
+
+/*Title for login page*/
+.loginTitle{
+  color: #FFCC00 !important;
+  font-family: 'Bebas Neue', serif !important;
+  text-align: center !important;
+}
+
+/*Register link for login page*/
+.loginPage a.registerlink{
+  font-weight: bolder !important;
+  color: #FFCC00;
+}
+.loginPage a.registerlink:hover
+{
+  color: white !important;
+}
+
+/*Styling for login button & also register button on register page*/
+.loginbtn{
+  margin-top: 20px !important;
+  color: #0b075a !important;
+  border-color: #0b075a !important;
+}
+.loginbtn:hover{
+  color: white !important;
+  border:1px solid #0b075a !important;
+  border-color: #0b075a !important;
+}
+
+/*Styling for cancle button on login & register page*/
+.cancelbtn{
+  margin-top: 20px !important;
+  color: rgb(255, 255, 255) !important;
+  border:1px solid red !important;
+  width: 100px !important;
+}
+.cancelbtn:hover{
+  background-color: red !important;
+  border:1px solid red !important;
+}
+/*________________________________________________________________________*/
+
+
+
+
+/*___________________Registration Page_____________________________________*/
+/*Formatting for registration form*/
+.registerPage{
+  flex-direction: column !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 500px !important;
+  margin: auto !important;
+  margin-top: 5% !important;
+  /* transform: translateY(-50%) !important; */
+}
+/*________________________________________________________________________*/
+
+
+/*________________________Rental List_______________________*/
+/*Styling for table*/
+tr{
+  color: #FFCC00 !important;
+}
+td{
+  color: #FFCC00 !important;
+  text-align: center !important;
+  height: 50px !important;
+  vertical-align: middle !important;
+  font-size: 17px !important;
+}
+th{
+  font-size: larger !important;
+}
+table, th, td{
+  border-color: #FFCC00!important;
+}
+#signupPrompt { 
+  font-family: 'Bebas Neue', serif;
+  animation: opacityFade 3s 1;
+  color: #FFCC00;
+  font-size: larger;
+}
+
+/*Container for add and edit page forms*/
+.containerCenter{
+  position: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 60px !important;
+  flex-direction: column;
+}
+
+/*Form fields for login, register, add, edit*/
+.form-group{
+  font-family: 'Nunito', sans-serif;
+  color:white;
+}
+
+/*Styling for Submit button*/
+.fa-submitbtn{
+  width: 100px !important;
+  color: #0b075a !important;
+  border-color: #0b075a !important;
+
+}
+.fa-submitbtn:hover{
+  color: white !important;
+  border:1px solid #0b075a !important;
+}
+
+/*Styling for rent a movie*/
+.fa-addbtn{
+  color: #0b075a !important;
+  border:1px solid #0b075a !important;
+}
+.fa-addbtn:hover{
+  color: white !important;
+}
+
+/*Styling for delete button*/
+.fa-delete2{
+  color: rgb(255, 255, 255) !important;
+  border:1px solid red !important;
+  width: 100px !important;
+}
+.fa-delete2:hover{
+  background-color: red !important;
+  border:1px solid red !important;
+}
+
+/*Styling for edit button*/
+.fa-edit2{
+  width: 100px !important;
+  color: rgb(255, 255, 255) !important;
+  border:1px solid #0b075a !important;
+}
+.fa-edit2:hover{
+  color: #0b075a !important;
+  border:1px solid rgb(255, 255, 255) !important;
+  border-color: #0b075a !important;
+}
+/*_______________________________________________________________*/
+
+
+
+
+/*Formatting for Titles*/
+.listTitle {
+  font-family: 'Bebas Neue', serif;
+  position: relative;
+  top: 12%;
+  text-align: center;
+  animation: fade-in 1.5s 1;
+  color: #FFCC00;
+}
