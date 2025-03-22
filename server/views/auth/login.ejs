@@ -1,0 +1,44 @@
+<%- include ("../partials/header") %>
+<%- include ("../partials/main_nav") %>
+
+<main class="container">
+    <!--Message Area-->
+    <% if (message.lenth > 0) { %>
+    <div class="alert alter-danger">
+        <%= message %>
+    </div>
+    <% } %>
+
+        <div class="loginPage">
+            <h1 class="loginTitle">Please Login</h1>
+            <form method="post" autocomplete="off">
+                <fieldset class="form-group">
+                    <label for="username"></label>
+                    <input type="text" class="form-control formBox"
+                    name="username" 
+                    placeholder="Enter username"
+                    id="username" required autofocus>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="password"></label>
+                    <input type="password" class="form-control"
+                    name="password" 
+                    placeholder="Enter password"
+                    id="password" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <br />or
+                    <a class="registerlink" href="/register">Register Here</a><br />
+                    <button type="submit" class="btn btn-success loginbtn" value="Login" style="background-color:#FFCC00;">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login</button>
+                    <a href="/"></a>
+                        <a href="/" class="btn cancelbtn">
+                        <i class="fas fa-undo"></i> Cancel </a>
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+</main>
+
+<%- include ("../partials/bottom_nav") %>
+<%- include ("../partials/footer") %>

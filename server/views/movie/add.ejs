@@ -1,0 +1,73 @@
+<%- include ("../partials/header") %>
+<%- include ("../partials/main_nav") %>
+<!--Content for the add page-->
+
+<div class="containerCenter">
+        <div class="col-md-offset-3 col-md-6">
+            <h1 class="listTitle"> <%= title %></h1> <br><br>
+            <form class="form" method="POST">
+                <!-- div for the "name"-->
+                <div class="form-group">
+                    <label for="userTextField"> </label>
+                    <input type="text" class=form-control 
+                    id="userTextField"
+                    placeholder="Enter the User Name"
+                    name="user" required>
+                </div>
+
+                <!-- div for the "difficulty"-->
+                 <div class="form-group">
+                    <label for="subscriptionTierTextField">  </label>
+                    <select class=form-control 
+                    id="subscriptionTierTextField"
+                    placeholder="Enter the Subscription Tier (Standard, Premium, Premium+)"
+                    name="subscriptionTier" required>
+                        <option value="" disabled selected hidden>Select the Subscription Tier</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Premium+">Premium+</option>
+                    </select>
+                </div>
+
+                <!-- div for the "ingredients"-->
+                 <div class="form-group">
+                    <label for="movieNameTextField">  </label>
+                    <input type="text" class=form-control 
+                    id="movieNameTextField"
+                    placeholder="Enter the Movie Name"
+                    name="movieName" required>
+                </div>
+                
+                <!-- div for the "time"-->
+                <div class="form-group">
+                    <label for="rentDateTextField">  </label>
+                    <input type="text" class=form-control 
+                    id="rentDateTextField"
+                    placeholder="Enter the Date Rented"
+                    onfocus="(this.type='date')"
+                    name="rentDate" required>
+                </div>
+
+                <!-- div for the "price"-->
+                 <div class="form-group">
+                    <label for="returnDateTextField"></label>
+                    <input type="number" class=form-control 
+                    id="returnDateField"
+                    placeholder="Enter the Return Date"
+                    onfocus="(this.type='date')"
+                    name="returnDate" required>
+                </div>
+                <br>
+                <!-- submit button with a background color of green-->
+                <button class="btn btn-success fa-submitbtn" type="submit" style="background-color:#FFCC00;"> 
+                    <i class="fas fa-edit"></i> Submit </a> 
+                </button>
+
+                <a href="/blockbuster" class="btn fa-delete2">
+                    <i class="fas fa-undo"></i> Cancel </a>
+            </form>
+        </div>
+    </div> 
+<%- include ("../partials/bottom_nav") %>
+<%- include ("../partials/footer") %>
+

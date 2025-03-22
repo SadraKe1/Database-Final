@@ -1,0 +1,66 @@
+<%- include ("../partials/header") %>
+<%- include ("../partials/main_nav") %>
+<main class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-12"> <!--web page can contain max of 8 columns, if you want to change it, change col-md-8-->
+            <h1 class="listTitle"><%= title %></h1>
+            <br>
+            <% if (typeof username=='string' && username) { %>
+              <a href="/blockbuster/add" class="btn btn-primary fa-addbtn" style="background-color:#FFCC00" role="button">
+                <i class="fas fa-plus-circle fa-addbtn2"></i> Rent a Movie </a>
+            <% } %>
+            <br>
+            <br>    
+      <!-- displays the table headers (th) and displays table content (td)-->
+      <table class="table table-bordered table-striped table-hover"  style="border: 2px solid #FFCC00">
+      <% if(typeof username=='string' && username) { %>
+        <tr> 
+          <th class="text-center col-2" style="background-color:#FFCC00"> User </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Subscription Tier </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Movie Name </th>
+          <th class="text-center col-1" style="background-color:#FFCC00"> Rent Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Return Date </th>
+          <th class="text-center col-1" style="background-color:#FFCC00"> Edit </th>
+          <th class="text-center col-1" style="background-color:#FFCC00"> Delete </th>
+        </tr>
+      <% } else { %>
+        <tr> 
+          <th class="text-center col-2" style="background-color:#FFCC00"> User </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Subscription Tier </th>
+          <th class="text-center col-4" style="background-color:#FFCC00"> Movie Name </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Rent Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Return Date </th>
+        </tr>
+        <p id='signupPrompt'>Want to start renting movies? <a href="/login">Login</a> or <a href="/register">Register</a> now!<p>
+      <% } %>
+
+      <% for(let count=0; count<MovieList.length; count++) { %> 
+        <tr> 
+            <td class="col-2" style="font:larger"> <%= MovieList[count].user %> </td>
+            <td class="col-2" style="color:white"> <%= MovieList[count].subscriptionTier %></td>
+            <td class="col-2" style="color:white"> <%= MovieList[count].movieName %></td>
+            <td class="col-2" style="color:white"> <%= MovieList[count].rentDate %></td>
+            <td class="col-2" style="color:white"> <%= MovieList[count].returnDate %></td>
+
+            <% if(typeof username=='string' && username) { %> 
+              <td class="text-center col-1" style="color:white">
+             
+              <a href="/blockbuster/edit/<%= MovieList[count]._id %>"
+              class="btn btn-secondary fa-edit2" style="background-color:#FFCC00">
+              <i class="fas fa-pencil-alt" ></i></a> </td>
+              <td class="text-center col-1">
+             
+              <a href="/blockbuster/delete/<%= MovieList[count]._id %>"
+              class="btn fa-delete2">
+              <i class="fas fa-trash-alt"></i></a> </td>
+            <% } %>  
+        </tr> 
+      <% } %>
+      </table>
+      
+      </div>
+    </div>
+</main>
+
+<%- include ("../partials/bottom_nav") %>
+<%- include ("../partials/footer") %>
