@@ -8,65 +8,75 @@
         <form class="form" method="post">
             <!-- div for the "name" but user can edit items as well-->
             <div class="form-group">
-                <label for="userTextField"> User </label>
+                <label for="studentTextField"> Student Name </label>
                 <input type="text" class="form-control"
-                id="userTextField"
-                placeholder="Enter the User Name"
-                name="user" 
-                value = "<%= MovieList.user %>"
+                id="studentTextField"
+                placeholder="Enter your Name"
+                name="student" 
+                value = "<%= MovieList.student %>"
                 required>
-            </div>
-
-            <!-- div for the "text" but user can edit items as well-->
-            <div class="form-group">
-                <label for="subscriptionTierTextField"> Subscription Tier </label>
-                <select class="form-control"
-                id="subscriptionTierTextField"
-                placeholder="Enter the Subscription Tier"
-                name="subscriptionTier" 
-                value = "<%= MovieList.subscriptionTier %>"
-                required>
-                        <option value="<%= MovieList.subscriptionTier %>"selected hidden><%= MovieList.subscriptionTier %></option>
-                        <option value="Standard">Standard</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Premium+">Premium+</option>
-                </select>
             </div>
 
 
             <!-- div for the "form" but user can edit items as well-->
             <div class="form-group">
-                <label for="movieNameTextField"> Movie Name </label>
+                <label for="courseTextField"> Course Name </label>
                 <input type="text" class="form-control"
-                id="movieNameTextField"
-                placeholder="Enter the movieName"
-                name="movieName" 
-                value = "<%= MovieList.movieName %>"
+                id="courseTextField"
+                placeholder="Enter your Course Name or ID"
+                name="course" 
+                value = "<%= MovieList.course %>"
+                required>
+            </div>
+
+
+            <!-- div for the "form" but user can edit items as well-->
+            <div class="form-group">
+                <label for="instructorTextField"> Instructor's Name </label>
+                <input type="text" class="form-control"
+                id="instructorTextField"
+                placeholder="Enter your Instructor's Name"
+                name="instructor" 
+                value = "<%= MovieList.instructor %>"
                 required>
             </div>
 
             <!-- div for the "time" but user can edit items as well-->
             <div class="form-group">
-                <label for="rentDateTextField"> Rent Date  </label>
+                <label for="enrollmentDateTextField"> Enrollment Date  </label>
                 <input type="text" class="form-control"
-                id="rentDateTextField"
-                placeholder="Enter the rental date"
+                id="enrollmentDateTextField"
+                placeholder="Enter the date you were Enrolled"
                 onfocus="(this.type='date')"
-                name="rentDate" 
-                value = "<%= MovieList.rentDate %>"
+                name="enrollmentDate" 
+                value = "<%= MovieList.enrollmentDate %>"
                 required>
             </div>
 
-            <!-- div for the "price" but user can edit items as well-->
+            <!-- div for the "text" but user can edit items as well-->
             <div class="form-group">
-                <label for="returnDateTextField"> Return Date </label>
-                <input type="text" class="form-control" 
-                id="returnDateTextField"
-                placeholder="Enter the returnDate "
-                onfocus="(this.type='date')"
-                name="returnDate" 
-                value = "<%= MovieList.returnDate %>"
+                <label for="gradeTextField"> Grade </label>
+                <select class="form-control"
+                id="gradeTextField"
+                placeholder="Select you Grade"
+                name="grade" 
+                value = "<%= MovieList.grade %>"
                 required>
+                        <option value="<%= MovieList.grade %>"selected hidden><%= MovieList.grade %></option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="C-">C-</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="D-">D-</option>
+                        <option value="F">F</option>
+                </select>
             </div>
             <br>
             <!-- green submit button-->

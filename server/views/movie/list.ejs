@@ -7,7 +7,7 @@
             <br>
             <% if (typeof username=='string' && username) { %>
               <a href="/blockbuster/add" class="btn btn-primary fa-addbtn" style="background-color:#FFCC00" role="button">
-                <i class="fas fa-plus-circle fa-addbtn2"></i> Rent a Movie </a>
+                <i class="fas fa-plus-circle fa-addbtn2"></i> Add a Course </a>
             <% } %>
             <br>
             <br>    
@@ -15,32 +15,32 @@
       <table class="table table-bordered table-striped table-hover"  style="border: 2px solid #FFCC00">
       <% if(typeof username=='string' && username) { %>
         <tr> 
-          <th class="text-center col-2" style="background-color:#FFCC00"> User </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Subscription Tier </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Movie Name </th>
-          <th class="text-center col-1" style="background-color:#FFCC00"> Rent Date </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Return Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Student </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Course </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Instructor </th>
+          <th class="text-center col-1" style="background-color:#FFCC00"> Enrollment Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
           <th class="text-center col-1" style="background-color:#FFCC00"> Edit </th>
           <th class="text-center col-1" style="background-color:#FFCC00"> Delete </th>
         </tr>
       <% } else { %>
         <tr> 
-          <th class="text-center col-2" style="background-color:#FFCC00"> User </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Subscription Tier </th>
-          <th class="text-center col-4" style="background-color:#FFCC00"> Movie Name </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Rent Date </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Return Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Student </th>
+          <th class="text-center col-4" style="background-color:#FFCC00"> Course </th>
+          <th class="text-center col-3" style="background-color:#FFCC00"> Instructor </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Enrollment Date </th>
+          <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
         </tr>
-        <p id='signupPrompt'>Want to start renting movies? <a href="/login">Login</a> or <a href="/register">Register</a> now!<p>
+        <p id='signupPrompt'>Ready to manage your courses? <a href="/login">Login</a> or <a href="/register">Register</a> to view your dashboard!<p>
       <% } %>
 
       <% for(let count=0; count<MovieList.length; count++) { %> 
         <tr> 
-            <td class="col-2" style="font:larger"> <%= MovieList[count].user %> </td>
-            <td class="col-2" style="color:white"> <%= MovieList[count].subscriptionTier %></td>
-            <td class="col-2" style="color:white"> <%= MovieList[count].movieName %></td>
-            <td class="col-2" style="color:white"> <%= MovieList[count].rentDate %></td>
-            <td class="col-2" style="color:white"> <%= MovieList[count].returnDate %></td>
+            <td class="col-2" style="color: black"> <%= MovieList[count].student %> </td>
+            <td class="col-2" style="color: black"> <%= MovieList[count].course %></td>
+            <td class="col-2" style="color: black"> <%= MovieList[count].instructor %></td>
+            <td class="col-2" style="color: black"> <%= MovieList[count].enrollmentDate %></td>
+            <td class="col-2" style="color: black"> <%= MovieList[count].grade %></td>
 
             <% if(typeof username=='string' && username) { %> 
               <td class="text-center col-1" style="color:white">
@@ -51,7 +51,7 @@
               <td class="text-center col-1">
              
               <a href="/blockbuster/delete/<%= MovieList[count]._id %>"
-              class="btn fa-delete2">
+              class="btn fa-delete2 btn btn-secondary fa-edit2" style="background-color:#FF0000">
               <i class="fas fa-trash-alt"></i></a> </td>
             <% } %>  
         </tr> 

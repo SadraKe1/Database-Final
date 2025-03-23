@@ -15,7 +15,7 @@ module.exports.displayMovieList = (req,res,next) => {
         else 
         {
             res.render('movie/list',{
-                title : 'Rental List', 
+                title : 'Course Enrollment', 
                 MovieList : movielist,
                 username: req.user ? req.user.username:''
             })
@@ -25,18 +25,18 @@ module.exports.displayMovieList = (req,res,next) => {
 
 //controller for displaying the add page
 module.exports.displayAddPage = (req,res,next) =>  {
-    res.render('movie/add',{title:'Add Rental Movie',
+    res.render('movie/add',{title:'Add a Course',
     username: req.user ? req.user.username:''})
 };
 
 //controller for adding contents on add page
 module.exports.processAddPage = (req,res,next) =>  {
     let newMovie = blockbuster ({
-        "user" : req.body.user,
-        "subscriptionTier" :req.body.subscriptionTier,
-        "movieName" : req.body.movieName,
-        "rentDate" : req.body.rentDate,
-        "returnDate":req.body.returnDate
+        "student" : req.body.student,
+        "course" :req.body.course,
+        "instructor" : req.body.instructor,
+        "enrollmentDate" : req.body.enrollmentDate,
+        "grade":req.body.grade
     });
     blockbuster.create(newMovie,(err,Movie) => {
         if(err) { 
@@ -60,34 +60,37 @@ module.exports.displayEditPage = (req,res,next) =>  {
         }
         else 
         {
-            res.render('movie/edit',{title:'Edit Rental Movie',MovieList:movieToEdit,
+            res.render('movie/edit',{title:'Edit Course',MovieList:movieToEdit,
             username: req.user ? req.user.username:''});
         }
     })
 };
 
 //controller for processing the edit page
-module.exports.processEditPage = (req,res,next) =>  {
+module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
-    let updateMovie = blockbuster({
-        "_id":id,
-        "user" : req.body.user,
-        "subscriptionTier" :req.body.subscriptionTier,
-        "movieName" : req.body.movieName,
-        "rentDate" : req.body.rentDate,
-        "returnDate":req.body.returnDate
-    });
-    blockbuster.updateOne({_id:id},updateMovie,(err)=> {
-        if(err) { 
-            console.log(err);
-            res.end()
-        }
-        else 
-        {
+
+    // DEBUG: log incoming data
+    console.log("Edit Form Data:", req.body);
+
+    let updateMovie = {
+        student: req.body.student,
+        course: req.body.course,
+        instructor: req.body.instructor,
+        enrollmentDate: req.body.enrollmentDate,
+        grade: req.body.grade
+    };
+
+    blockbuster.updateOne({ _id: id }, updateMovie, (err) => {
+        if (err) {
+            console.error("Update Error:", err);
+            res.status(500).send("Edit Failed");
+        } else {
             res.redirect('/blockbuster');
         }
-    })
+    });
 };
+
 
 //controller for deleting items
 module.exports.performDeletePage = (req,res,next) =>  {

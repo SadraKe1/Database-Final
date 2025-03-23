@@ -1,11 +1,11 @@
 let mongoose = require('mongoose');
 //creates the blockbuster model
 let blockbusterModel = mongoose.Schema({
-    user : String,
-    subscriptionTier : String,
-    movieName : String,
-    rentDate : String,
-    returnDate : String,
+    student : String,
+    course : String,
+    instructor : String,
+    enrollmentDate : String,
+    grade : String,
     },
     {
         collection: "movies"

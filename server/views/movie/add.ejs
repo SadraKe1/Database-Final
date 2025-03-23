@@ -8,55 +8,65 @@
             <form class="form" method="POST">
                 <!-- div for the "name"-->
                 <div class="form-group">
-                    <label for="userTextField"> </label>
+                    <label for="nameTextField"> </label>
                     <input type="text" class=form-control 
-                    id="userTextField"
-                    placeholder="Enter the User Name"
-                    name="user" required>
-                </div>
-
-                <!-- div for the "difficulty"-->
-                 <div class="form-group">
-                    <label for="subscriptionTierTextField">  </label>
-                    <select class=form-control 
-                    id="subscriptionTierTextField"
-                    placeholder="Enter the Subscription Tier (Standard, Premium, Premium+)"
-                    name="subscriptionTier" required>
-                        <option value="" disabled selected hidden>Select the Subscription Tier</option>
-                        <option value="Standard">Standard</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Premium+">Premium+</option>
-                    </select>
+                    id="studentTextField"
+                    placeholder="Enter your Name"
+                    name="student" required>
                 </div>
 
                 <!-- div for the "ingredients"-->
                  <div class="form-group">
-                    <label for="movieNameTextField">  </label>
+                    <label for="courseTextField">  </label>
                     <input type="text" class=form-control 
-                    id="movieNameTextField"
-                    placeholder="Enter the Movie Name"
-                    name="movieName" required>
-                </div>
-                
-                <!-- div for the "time"-->
-                <div class="form-group">
-                    <label for="rentDateTextField">  </label>
-                    <input type="text" class=form-control 
-                    id="rentDateTextField"
-                    placeholder="Enter the Date Rented"
-                    onfocus="(this.type='date')"
-                    name="rentDate" required>
+                    id="courseTextField"
+                    placeholder="Enter your Course Name or ID"
+                    name="course" required>
                 </div>
 
-                <!-- div for the "price"-->
+                <!-- div for the "ingredients"-->
                  <div class="form-group">
-                    <label for="returnDateTextField"></label>
-                    <input type="number" class=form-control 
-                    id="returnDateField"
-                    placeholder="Enter the Return Date"
-                    onfocus="(this.type='date')"
-                    name="returnDate" required>
+                    <label for="instructorTextField">  </label>
+                    <input type="text" class=form-control 
+                    id="instructorTextField"
+                    placeholder="Enter your Instructor"
+                    name="instructor" required>
                 </div>
+
+                <!-- div for the "time"-->
+                <div class="form-group">
+                    <label for="enrollmentDateTextField">  </label>
+                    <input type="text" class=form-control 
+                    id="enrollmentDateTextField"
+                    placeholder="Enter the day you were Enrolled"
+                    onfocus="(this.type='date')"
+                    name="enrollmentDate" required>
+                </div>
+
+                <!-- div for the "difficulty"-->
+                 <div class="form-group">
+                    <label for="gradeTextField">  </label>
+                    <select class=form-control 
+                    id="gradeTextField"
+                    placeholder="Select your Grade"
+                    name="grade" required>
+                        <option value="" disabled selected hidden>Select your Grade</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="C-">C-</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="D-">D-</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+
                 <br>
                 <!-- submit button with a background color of green-->
                 <button class="btn btn-success fa-submitbtn" type="submit" style="background-color:#FFCC00;"> 

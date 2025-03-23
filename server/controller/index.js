@@ -6,7 +6,7 @@ let User = userModel.User;
 
 //controller for index page -> used to organize code
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'Blockbuster',username: req.user ? req.user.username:''});
+    res.render('index', { title: 'CourseHub',username: req.user ? req.user.username:''});
   }
 
 //Get operation for login page 
