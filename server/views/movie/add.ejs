@@ -26,29 +26,30 @@
             </div>
 <!-- Grade -->
 <div class="form-group">
-    <label for="gradeTextField">Grade</label>
-    <input type="text" class="form-control" 
-        id="gradeTextField"
-        placeholder="Enter Grade (e.g., A, B, C)"
-        name="grade">
-  </div>
+  <label for="gradeTextField">Grade</label>
+  <input type="text" class="form-control" 
+      id="gradeTextField"
+      placeholder="Enter Grade (e.g., A, B, C)"
+      name="grade">
+</div>
             <!-- Instructor -->
-            <div class="form-group">
-                <label for="instructorSelect">Instructor</label>
-                <select class="form-control" id="instructorSelect" name="instructorId" required>
-                  <% if (instructors.length > 0) { %>
+           <!-- Instructor -->
+           <div class="form-group">
+            <label for="instructorSelect">Instructor</label>
+            <select class="form-control" id="instructorSelect" name="instructorId" required>
+                <% if (instructors.length > 0) { %>
                     <% instructors.forEach(instructor => { %>
-                      <% if (instructor.personId) { %>
-                        <option value="<%= instructor._id %>"><%= instructor.personId.name %></option>
-                      <% } else { %>
-                        <option value="">Instructor data missing</option>
-                      <% } %>
+                        <% if (instructor.personId && instructor.personId.name) { %>
+                            <option value="<%= instructor._id %>"><%= instructor.personId.name %></option>
+                        <% } else { %>
+                            <option value="<%= instructor._id %>">Unnamed Instructor</option>
+                        <% } %>
                     <% }) %>
-                  <% } else { %>
+                <% } else { %>
                     <option value="">No instructors available</option>
-                  <% } %>
-                </select>
-              </div>
+                <% } %>
+            </select>
+        </div>
               
               <!-- Debugging: Display the instructors array -->
            
