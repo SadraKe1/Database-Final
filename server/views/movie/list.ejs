@@ -1,66 +1,75 @@
 <%- include ("../partials/header") %>
 <%- include ("../partials/main_nav") %>
 <main class="container">
-      <div class="row">
-        <div class="col-md-offset-3 col-md-12"> <!--web page can contain max of 8 columns, if you want to change it, change col-md-8-->
+    <div class="row">
+        <div class="col-md-offset-3 col-md-12">
             <h1 class="listTitle"><%= title %></h1>
             <br>
-            <% if (typeof username=='string' && username) { %>
-              <a href="/blockbuster/add" class="btn btn-primary fa-addbtn" style="background-color:#FFCC00" role="button">
-                <i class="fas fa-plus-circle fa-addbtn2"></i> Add a Course </a>
-            <% } %>
-            <br>
-            <br>    
-      <!-- displays the table headers (th) and displays table content (td)-->
-      <table class="table table-bordered table-striped table-hover"  style="border: 2px solid #FFCC00">
-      <% if(typeof username=='string' && username) { %>
-        <tr> 
-          <th class="text-center col-2" style="background-color:#FFCC00"> Student </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Course </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Instructor </th>
-          <th class="text-center col-1" style="background-color:#FFCC00"> Enrollment Date </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
-          <th class="text-center col-1" style="background-color:#FFCC00"> Edit </th>
-          <th class="text-center col-1" style="background-color:#FFCC00"> Delete </th>
-        </tr>
-      <% } else { %>
-        <tr> 
-          <th class="text-center col-2" style="background-color:#FFCC00"> Student </th>
-          <th class="text-center col-4" style="background-color:#FFCC00"> Course </th>
-          <th class="text-center col-3" style="background-color:#FFCC00"> Instructor </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Enrollment Date </th>
-          <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
-        </tr>
-        <p id='signupPrompt'>Ready to manage your courses? <a href="/login">Login</a> or <a href="/register">Register</a> to view your dashboard!<p>
-      <% } %>
+            <table class="table table-bordered table-striped table-hover" style="border: 2px solid #FFCC00">
+                <thead>
+                    <tr>
+                        <th class="text-center col-2" style="background-color:#FFCC00"> Course </th>
+                        <th class="text-center col-2" style="background-color:#FFCC00"> Instructor </th>
+                        <th class="text-center col-2" style="background-color:#FFCC00"> Enrollment Date </th>
+                        <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
+                        <th class="text-center col-1" style="background-color:#FFCC00"> Edit </th>
+                        <th class="text-center col-1" style="background-color:#FFCC00"> Delete </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let count = 0; count < courses.length; count++) { %>
+                        <tr>
+                            <!-- Course Name -->
+                            <td class="col-2" style="color: black"> <%= courses[count].courseName %> </td>
 
-      <% for(let count=0; count<MovieList.length; count++) { %> 
-        <tr> 
-            <td class="col-2" style="color: black"> <%= MovieList[count].student %> </td>
-            <td class="col-2" style="color: black"> <%= MovieList[count].course %></td>
-            <td class="col-2" style="color: black"> <%= MovieList[count].instructor %></td>
-            <td class="col-2" style="color: black"> <%= MovieList[count].enrollmentDate %></td>
-            <td class="col-2" style="color: black"> <%= MovieList[count].grade %></td>
+                            <!-- Instructor Name -->
+                            <td class="col-2" style="color: black">
+                                <% if (courses[count].instructorId) { %>
+                                    <%= courses[count].instructorId.name %>
+                                <% } else { %>
+                                    N/A
+                                <% } %>
+                            </td>
 
-            <% if(typeof username=='string' && username) { %> 
-              <td class="text-center col-1" style="color:white">
-             
-              <a href="/blockbuster/edit/<%= MovieList[count]._id %>"
-              class="btn btn-secondary fa-edit2" style="background-color:#FFCC00">
-              <i class="fas fa-pencil-alt" ></i></a> </td>
-              <td class="text-center col-1">
-             
-              <a href="/blockbuster/delete/<%= MovieList[count]._id %>"
-              class="btn fa-delete2 btn btn-secondary fa-edit2" style="background-color:#FF0000">
-              <i class="fas fa-trash-alt"></i></a> </td>
-            <% } %>  
-        </tr> 
-      <% } %>
-      </table>
-      
-      </div>
+                            <!-- Enrollment Date -->
+                            <td class="col-2" style="color: black">
+                                <% if (courses[count].createdAt) { %>
+                                    <%= new Date(courses[count].createdAt).toDateString() %>
+                                <% } else { %>
+                                    N/A
+                                <% } %>
+                            </td>
+
+                            <!-- Grade -->
+                            <td class="col-2" style="color: black">
+                                <% if (courses[count].grade) { %>
+                                    <%= courses[count].grade %>
+                                <% } else { %>
+                                    N/A
+                                <% } %>
+                            </td>
+
+                            <!-- Edit Button -->
+                            <td class="text-center col-1">
+                                <a href="/courses/edit/<%= courses[count]._id %>" class="btn btn-secondary fa-edit2" style="background-color:#FFCC00">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                            </td>
+
+                            <!-- Delete Button -->
+                            <td class="text-center col-1">
+                                <a href="#" 
+                                   class="btn fa-delete2 btn btn-secondary fa-edit2 delete-course" 
+                                   style="background-color:#FF0000" 
+                                   data-id="<%= courses[count]._id %>">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
-
-<%- include ("../partials/bottom_nav") %>
 <%- include ("../partials/footer") %>

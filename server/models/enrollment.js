@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const enrollmentSchema = new mongoose.Schema({
-    studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true }, // Reference to Student
-    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },   // Reference to Course
-    enrollmentDate: { type: Date, default: Date.now }, // Date of enrollment
-    grade: { type: String, enum: ['A', 'B', 'C', 'D', 'F', 'Incomplete'], default: 'Incomplete' } // Grade with validation
-}, {
-    collection: "enrollments" // Correct collection name
+  EnrollmentID: { type: mongoose.Schema.Types.ObjectId, default: new mongoose.Types.ObjectId() }, // Unique ID for enrollment
+  StudentID: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true }, // Reference to Student
+  CourseID: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true }, // Reference to Course
+  EnrollmentDate: { type: Date, required: true }, // Date of enrollment
+  Grade: { type: String, required: false }, // Optional grade field
 });
 
 module.exports = mongoose.model('Enrollment', enrollmentSchema);

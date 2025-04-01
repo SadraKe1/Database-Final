@@ -1,12 +1,12 @@
-<%- include ("partials/header") %>
-<%- include ("partials/main_nav") %>
-<div class="container">
-    <h1><%= message %></h1>
-    <!--
-    <h2><%= error.status %></h2>
-    <pre><%= error.stack %></pre> -->
-    <!--<h2><%= error.status %></h2>-->
-    <!--<pre><%= error.stack %></pre>-->
-</div>
-<%- include ("partials/bottom_nav") %>
-<%- include ("partials/footer") %>
+<div class="blockbuster-error">
+    <h1 class="glitch">ERROR</h1>
+    <!-- Dynamic error messages -->
+    <% if (error.message.includes('rent')) { %>
+      <p class="film-roll"><%= error.message.replace('rent', 'enroll') %></p>
+    <% } else { %>
+      <p class="film-roll"><%= error.message %></p>
+    <% } %>
+    
+    <!-- Reused button -->
+    <a href="/courses" class="btn-blockbuster">BACK TO SCHEDULE</a>
+  </div>

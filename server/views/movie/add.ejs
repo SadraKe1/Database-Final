@@ -1,83 +1,72 @@
 <%- include ("../partials/header") %>
 <%- include ("../partials/main_nav") %>
-<!--Content for the add page-->
 
+<!-- Content for the Add Course Page -->
 <div class="containerCenter">
-        <div class="col-md-offset-3 col-md-6">
-            <h1 class="listTitle"> <%= title %></h1> <br><br>
-            <form class="form" method="POST">
-                <!-- div for the "name"-->
-                <div class="form-group">
-                    <label for="nameTextField"> </label>
-                    <input type="text" class=form-control 
-                    id="studentTextField"
-                    placeholder="Enter your Name"
-                    name="student" required>
-                </div>
+    <div class="col-md-offset-3 col-md-6">
+        <h1 class="listTitle"><%= title %></h1> <br><br>
+        <form class="form" method="POST" action="/courses/add">
 
-                <!-- div for the "ingredients"-->
-                 <div class="form-group">
-                    <label for="courseTextField">  </label>
-                    <input type="text" class=form-control 
-                    id="courseTextField"
-                    placeholder="Enter your Course Name or ID"
-                    name="course" required>
-                </div>
+            <!-- Course Name -->
+            <div class="form-group">
+                <label for="courseNameTextField">Course Name</label>
+                <input type="text" class="form-control" 
+                    id="courseNameTextField"
+                    placeholder="Enter Course Name"
+                    name="courseName" required>
+            </div>
 
-                <!-- div for the "ingredients"-->
-                 <div class="form-group">
-                    <label for="instructorTextField">  </label>
-                    <input type="text" class=form-control 
-                    id="instructorTextField"
-                    placeholder="Enter your Instructor"
-                    name="instructor" required>
-                </div>
+            <!-- Credits -->
+            <div class="form-group">
+                <label for="creditsTextField">Credits</label>
+                <input type="number" class="form-control" 
+                    id="creditsTextField"
+                    placeholder="Enter Course Credits"
+                    name="credits" required min="0">
+            </div>
+<!-- Grade -->
+<div class="form-group">
+    <label for="gradeTextField">Grade</label>
+    <input type="text" class="form-control" 
+        id="gradeTextField"
+        placeholder="Enter Grade (e.g., A, B, C)"
+        name="grade">
+  </div>
+            <!-- Instructor -->
+            <div class="form-group">
+                <label for="instructorSelect">Instructor</label>
+                <select class="form-control" id="instructorSelect" name="instructorId" required>
+                  <% if (instructors.length > 0) { %>
+                    <% instructors.forEach(instructor => { %>
+                      <% if (instructor.personId) { %>
+                        <option value="<%= instructor._id %>"><%= instructor.personId.name %></option>
+                      <% } else { %>
+                        <option value="">Instructor data missing</option>
+                      <% } %>
+                    <% }) %>
+                  <% } else { %>
+                    <option value="">No instructors available</option>
+                  <% } %>
+                </select>
+              </div>
+              
+              <!-- Debugging: Display the instructors array -->
+           
 
-                <!-- div for the "time"-->
-                <div class="form-group">
-                    <label for="enrollmentDateTextField">  </label>
-                    <input type="text" class=form-control 
-                    id="enrollmentDateTextField"
-                    placeholder="Enter the day you were Enrolled"
-                    onfocus="(this.type='date')"
-                    name="enrollmentDate" required>
-                </div>
+            <br>
 
-                <!-- div for the "difficulty"-->
-                 <div class="form-group">
-                    <label for="gradeTextField">  </label>
-                    <select class=form-control 
-                    id="gradeTextField"
-                    placeholder="Select your Grade"
-                    name="grade" required>
-                        <option value="" disabled selected hidden>Select your Grade</option>
-                        <option value="A+">A+</option>
-                        <option value="A">A</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B">B</option>
-                        <option value="B-">B-</option>
-                        <option value="C+">C+</option>
-                        <option value="C">C</option>
-                        <option value="C-">C-</option>
-                        <option value="D+">D+</option>
-                        <option value="D">D</option>
-                        <option value="D-">D-</option>
-                        <option value="F">F</option>
-                    </select>
-                </div>
+            <!-- Submit Button -->
+            <button class="btn btn-success fa-submitbtn" type="submit" style="background-color:#FFCC00;"> 
+                <i class="fas fa-edit"></i> Submit 
+            </button>
 
-                <br>
-                <!-- submit button with a background color of green-->
-                <button class="btn btn-success fa-submitbtn" type="submit" style="background-color:#FFCC00;"> 
-                    <i class="fas fa-edit"></i> Submit </a> 
-                </button>
+            <!-- Cancel Button -->
+            <a href="/courses" class="btn fa-delete2">
+                <i class="fas fa-undo"></i> Cancel 
+            </a>
+        </form>
+    </div>
+</div> 
 
-                <a href="/blockbuster" class="btn fa-delete2">
-                    <i class="fas fa-undo"></i> Cancel </a>
-            </form>
-        </div>
-    </div> 
 <%- include ("../partials/bottom_nav") %>
 <%- include ("../partials/footer") %>
-
