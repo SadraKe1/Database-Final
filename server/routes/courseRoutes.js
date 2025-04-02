@@ -7,32 +7,35 @@ const mongoose = require('mongoose'); // Import mongoose
 // Render the Courses List Page
 router.get('/', async (req, res) => {
     try {
-        // Fetch courses and populate instructorId, personId, and enrollment data
+        // Fetch courses and populate instructorId and personId
         const courses = await Course.find()
             .populate({
                 path: 'instructorId',
-                populate: { path: 'personId', model: 'Person' } // Populate personId to get the instructor's name
-            })
-            .populate({
-                path: 'enrollmentId', // Populate enrollmentId to get enrollment details
-                model: 'Enrollment',
-                select: 'EnrollmentDate Grade', // Only fetch EnrollmentDate and Grade fields
+                populate: { path: 'personId', model: 'Person' }
             });
 
-        console.log('Fetched courses:', courses); // Debugging: Log the fetched courses
-        const enrollments = await Enrollment.find().populate('StudentID').populate('CourseID');
+        // Fetch all enrollments
+        const enrollments = await Enrollment.find().populate('CourseID').populate('StudentID');
 
-        console.log('Fetched courses:', courses); // Debugging: Log the fetched courses
-        console.log('Fetched enrollments:', enrollments); // Debugging: Log the fetched enrollments
+        // Map grades to courses
+        const coursesWithGrades = courses.map((course) => {
+            // Find the enrollment for this course
+            const enrollment = enrollments.find((enrollment) => {
+                return enrollment.CourseID && enrollment.CourseID._id.toString() === course._id.toString();
+            });
 
-        res.render('movie/list', { 
-            title: 'Courses List', 
-            courses,
-            enrollments // Pass enrollments to the view
+            // Add the Grade field to the course
+            return {
+                ...course.toObject(),
+                grade: enrollment ? enrollment.Grade : 'N/A', // Default to 'N/A' if no enrollment is found
+            };
         });
-        res.render('movie/list', { 
-            title: 'Courses List', 
-            courses 
+
+        // Render the view with the updated courses
+        res.render('movie/list', {
+            title: 'Courses List',
+            courses: coursesWithGrades,
+            enrollments,
         });
     } catch (error) {
         console.error('Error fetching courses:', error);
