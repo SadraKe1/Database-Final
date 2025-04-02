@@ -20,9 +20,9 @@
 
             <li class="nav-item">
               <% if (title == "CourseHub") { %>
-                <a class="nav-link active fa-color" aria-current="page" href="/home" style="color:#FFCC00">
+                <a class="nav-link active fa-color" aria-current="page" href="/" style="color:#FFCC00">
               <% } else { %>
-                <a class="nav-link" aria-current="page" href="/home">
+                <a class="nav-link" aria-current="page" href="/">
               <% } %>
                 <i class="fa-solid fa-house fa-2x"></i> Home</a>
             </li>
@@ -37,16 +37,16 @@
             </li>
 
             <li class="nav-item">
-              <a href="/logout" class="nav-link">
+              <a href="/login" class="nav-link">
                 <i class="fas fa-2x fa-sign-out-alt"></i> Logout</a>
             </li>
           <% } else { %>
             <!-- Guest User -->
             <li class="nav-item">
               <% if (title == "CourseHub") { %>
-                <a class="nav-link active fa-color" aria-current="page" href="/home" style="color:#FFCC00">
+                <a class="nav-link active fa-color" aria-current="page" href="/" style="color:#FFCC00">
               <% } else { %>
-                <a class="nav-link" aria-current="page" href="/home">
+                <a class="nav-link" aria-current="page" href="/">
               <% } %>
                 <i class="fa-solid fa-house fa-2x"></i> Home</a>
             </li>
@@ -60,10 +60,7 @@
                 <i class="fa-regular fa-bookmark fa-2x"></i> Enrollment</a>
             </li>
 
-            <li class="nav-item">
-              <a href="/login" class="nav-link">
-                <i class="fas fa-2x fa-sign-in-alt"></i> Login</a>
-            </li>
+           
           <% } %>
         </ul>
       </div>

@@ -57,7 +57,7 @@ router.get('/add', async (req, res) => {
         res.redirect('/courses');
     }
 });
-
+// Handle Logout
 // Handle the Add Course Form Submission
 router.post('/add', async (req, res) => {
     try {
@@ -115,12 +115,20 @@ router.get('/edit/:id', async (req, res) => {
 // Handle the Edit Course Form Submission
 router.post('/edit/:id', async (req, res) => {
     try {
-        const { courseName, credits, instructorId, grade } = req.body;
+        const { courseName, credits} = req.body;
 
         // Update the course in the database
         const updatedCourse = await Course.findByIdAndUpdate(
             req.params.id,
-            { courseName, credits, instructorId, grade },
+            { courseName, credits },
+            { new: true, runValidators: true } // Return the updated document
+        );
+        const { grade } = req.body;
+
+        // Update the grade in the Enrollment model
+        const updatedEnrollment = await Enrollment.findByIdAndUpdate(
+            req.params.id, // Enrollment ID from the URL
+            { Grade: grade }, // Update the Grade field
             { new: true, runValidators: true } // Return the updated document
         );
 
@@ -138,6 +146,7 @@ router.post('/edit/:id', async (req, res) => {
     }
 });
 // Import the Course model
+// Handle the /home route
 
 // Delete a course
 router.delete('/delete/:id', async (req, res) => {
