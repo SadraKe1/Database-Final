@@ -157,6 +157,7 @@ app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use((req, res, next) => {
   res.locals.currentUser = req.user; // `req.user` is set by Passport
   next();
+
 });
 // Routes
 let courseRouter = require('../routes/courseRoutes');
@@ -175,6 +176,7 @@ app.use('/', registerRouter);
 app.get('/', (req, res) => {
   res.render('index', { title: 'Home Page' });
 });
+
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
