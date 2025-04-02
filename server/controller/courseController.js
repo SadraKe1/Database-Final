@@ -21,7 +21,7 @@ exports.getAllCourses = async (req, res) => {
       // Add the Grade field to the course
       return {
         ...course.toObject(),
-        grade: enrollment ? enrollment.Grade : 'N/A', // Add grade or default to 'N/A'
+        grade: enrollment ? enrollment.Grade : 'B', // Add grade or default to 'N/A'
       };
     });
 
@@ -52,28 +52,43 @@ exports.renderAddCoursePage = async (req, res) => {
 // Create a new course
 exports.createCourse = async (req, res) => {
   try {
-    const { courseName, credits, instructorId, grade } = req.body;
+      const { courseName, credits, instructorId, grade } = req.body;
 
-    // Create a new course document
-    const newCourse = new Course({
-      courseName,
-      credits,
-      instructorId,
- // Add grade
-    });
+      // Debugging: Log the incoming data
+      console.log('Creating course with data:', { courseName, credits, instructorId, grade });
 
-    // Save the course to the database
-    await newCourse.save();
+      // Step 1: Create a new course in the database
+      const newCourse = new Course({
+          courseName,
+          credits,
+          instructorId,
+      });
+      await newCourse.save();
+      console.log(`Created course: ${newCourse.courseName}`);
 
-    // Redirect to the course list page
-    res.redirect('/courses');
+      // Step 2: Create a new enrollment for the course
+      const newEnrollment = new Enrollment({
+          EnrollmentID: new mongoose.Types.ObjectId(), // Use the current date as the EnrollmentID
+          CourseID: newCourse._id, // Reference the newly created course
+          Grade: grade, // Use the grade inputted in the form
+          EnrollmentDate: new Date(),
+          StudentID: new mongoose.Types.ObjectId()// Set the current date as the enrollment date
+      });
+
+      // Debugging: Log the enrollment data before saving
+      console.log('Creating enrollment with data:', newEnrollment);
+
+      await newEnrollment.save();
+      console.log(`Created enrollment for course: ${newCourse.courseName}`);
+
+      req.flash('success', 'Course and enrollment added successfully.');
+      res.redirect('/courses'); // Redirect to the courses list
   } catch (error) {
-    console.error('Error creating course:', error.message); // Log the error message
-    console.error(error.stack); // Log the full error stack for debugging
-    res.status(500).send('An error occurred while creating the course.');
+      console.error('Error creating course and enrollment:', error.message); // Log the error message
+      console.error(error.stack); // Log the full error stack for debugging
+      res.status(500).send('An error occurred while creating the course and enrollment.');
   }
 };
-
 // Update course
 exports.updateCourse = async (req, res) => {
   try {

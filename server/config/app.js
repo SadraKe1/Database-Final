@@ -41,7 +41,41 @@ mongoDB.once('open', async () => {
 // Seed Database Function
 const seedDatabase = async () => {
   try {
-    // Create a person for Mariyam Member
+    // Step 1: Create an instructor from an existing person in the database
+    let sadraPerson = await Person.findOne({ name: 'Sadra Keshavarzsafiei' });
+    if (!sadraPerson) {
+      sadraPerson = await Person.create({
+        name: 'Sadra Keshavarzsafiei',
+        address: '456 Oak Avenue',
+      });
+      console.log(`Created person: ${sadraPerson.name}`);
+    }
+
+    let sadraInstructor = await Instructor.findOne({ personId: sadraPerson._id });
+    if (!sadraInstructor) {
+      sadraInstructor = await Instructor.create({
+        personId: sadraPerson._id, // Reference the Person document
+        salary: 75000, // Example salary
+      });
+      console.log(`Created instructor: ${sadraPerson.name}`);
+    } else {
+      console.log(`Instructor for ${sadraPerson.name} already exists.`);
+    }
+
+    // Step 2: Create the Math 101 course and assign Sadra as the instructor
+    let mathCourse = await Course.findOne({ courseName: 'Math 101' });
+    if (!mathCourse) {
+      mathCourse = await Course.create({
+        courseName: 'Math 101',
+        credits: 3, // Example credits
+        instructorId: sadraInstructor._id, // Assign Sadra as the instructor
+      });
+      console.log(`Created course: ${mathCourse.courseName}`);
+    } else {
+      console.log('Course "Math 101" already exists.');
+    }
+
+    // Step 3: Create a person for Mariyam Member
     let mariyamPerson = await Person.findOne({ name: 'Mariyam Member' });
     if (!mariyamPerson) {
       mariyamPerson = await Person.create({
@@ -53,7 +87,7 @@ const seedDatabase = async () => {
       console.log('Person "Mariyam Member" already exists.');
     }
 
-    // Create a student for Mariyam Member
+    // Step 4: Create a student for Mariyam Member
     let mariyamStudent = await Student.findOne({ personId: mariyamPerson._id });
     if (!mariyamStudent) {
       mariyamStudent = await Student.create({
@@ -65,29 +99,24 @@ const seedDatabase = async () => {
       console.log('Student "Mariyam Member" already exists.');
     }
 
-    // Create an enrollment document for Mariyam
-    const course = await Course.findOne({ courseName: 'Math 101' });
-    if (course) {
-      const existingEnrollment = await Enrollment.findOne({
+    // Step 5: Create an enrollment document for Mariyam in Math 101
+    const existingEnrollment = await Enrollment.findOne({
+      StudentID: mariyamStudent._id,
+      CourseID: mathCourse._id,
+    });
+
+    if (!existingEnrollment) {
+      const enrollment = await Enrollment.create({
+        EnrollmentID: new mongoose.Types.ObjectId(),
         StudentID: mariyamStudent._id,
-        CourseID: course._id,
+        CourseID: mathCourse._id,
+        EnrollmentDate: new Date(),
+        Grade: 'A',
       });
 
-      if (!existingEnrollment) {
-        const enrollment = await Enrollment.create({
-          EnrollmentID: new mongoose.Types.ObjectId(),
-          StudentID: mariyamStudent._id,
-          CourseID: course._id,
-          EnrollmentDate: new Date(),
-          Grade: 'A',
-        });
-
-        console.log(`Created enrollment: ${enrollment._id}`);
-      } else {
-        console.log('Enrollment for Mariyam in "Math 101" already exists.');
-      }
+      console.log(`Created enrollment: ${enrollment._id}`);
     } else {
-      console.log('Course "Math 101" not found. Enrollment not created.');
+      console.log('Enrollment for Mariyam in "Math 101" already exists.');
     }
 
     console.log('Database updates completed!');
@@ -95,7 +124,6 @@ const seedDatabase = async () => {
     console.error('Error updating database:', error);
   }
 };
-
 // Set up Express session
 app.use(
   Session({
