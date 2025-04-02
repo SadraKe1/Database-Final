@@ -19,42 +19,14 @@
             </div>
 
             <!-- Credits -->
-            <div class="form-group">
-                <label for="creditsTextField">Credits</label>
-                <input type="number" class="form-control"
-                    id="creditsTextField"
-                    placeholder="Enter Course Credits"
-                    name="credits"
-                    value="<%= course.credits %>"
-                    required min="0">
-            </div>
+        
+          
 
             <!-- Instructor Dropdown -->
-            <div class="form-group">
-                <label for="instructorDropdown">Instructor</label>
-                <select class="form-control" id="instructorDropdown" name="instructorId" required>
-                    <% if (instructors && instructors.length > 0) { %>
-                        <% instructors.forEach(instructor => { %>
-                            <option value="<%= instructor._id %>" 
-                                <%= instructor._id.toString() === course.instructorId.toString() ? 'selected' : '' %>>
-                                <%= instructor.name %>
-                            </option>
-                        <% }) %>
-                    <% } else { %>
-                        <option value="">No instructors available</option>
-                    <% } %>
-                </select>
-            </div>
+          
 
             <!-- Grade -->
-            <div class="form-group">
-                <label for="gradeTextField">Grade</label>
-                <input type="text" class="form-control"
-                    id="gradeTextField"
-                    placeholder="Enter Grade"
-                    name="grade"
-                    value="<%= course.grade %>">
-            </div>
+        
 
             <br>
 

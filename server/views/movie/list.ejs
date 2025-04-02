@@ -22,7 +22,7 @@
                 </div>
             <% } %>
             <!-- Add margin-top to the table -->
-            <table class="table table-bordered table-striped table-hover" style="border: 2px solid #FFCC00; margin-top: 20px;">
+            <table class="table table-bordered table-striped table-hover" style="border: 2px solid #FFCC00; margin-top: 25px;">
                 
                 <thead>
                     <tr>
@@ -32,6 +32,7 @@
                         <th class="text-center col-2" style="background-color:#FFCC00"> Grade </th>
    
                         <% if (currentUser) { %>
+                            <th class="text-center col-1" style="background-color:#FFCC00"> Edit </th>
                             <th class="text-center col-1" style="background-color:#FFCC00"> Delete </th>
                         <% } %>
                     </tr>
@@ -69,7 +70,14 @@
         N/A
     <% } %>
 </td>
-
+<!-- Edit Button -->
+<% if (currentUser) { %>
+<td class="text-center col-1">
+    <a href="/courses/edit/<%= courses[count]._id %>" class="btn btn-secondary fa-edit2" style="background-color:#FFCC00">
+        <i class="fas fa-pencil-alt"></i>
+    </a>
+</td>
+<% } %>
                             
 
                             <!-- Delete Button -->

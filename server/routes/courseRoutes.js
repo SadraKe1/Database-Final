@@ -96,7 +96,7 @@ router.post('/add', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
     try {
         const course = await Course.findById(req.params.id); // Find the course by ID
-        const instructors = await Instructor.find(); // Fetch all instructors
+        const instructors = await Instructor.find().populate('personId'); // Fetch all instructors
 
         if (!course) {
             req.flash('error', 'Course not found.');
@@ -130,7 +130,7 @@ router.post('/edit/:id', async (req, res) => {
 
         // Update the grade in the Enrollment model
         const updatedEnrollment = await Enrollment.findByIdAndUpdate(
-            req.params.id, // Enrollment ID from the URL
+            enrollment._id, // Enrollment ID from the URL
             { Grade: grade }, // Update the Grade field
             { new: true, runValidators: true } // Return the updated document
         );
